@@ -11,7 +11,6 @@ export default function EmailEntry() {
   const handleAddEmail = (e: React.FormEvent) => {
     e.preventDefault();
     if (newEmail.trim() && !emails.includes(newEmail)) {
-      // Remove empty strings and add the new one
       const currentEmails = emails.filter(e => e !== '');
       setEmails([...currentEmails, newEmail]);
       setNewEmail('');
@@ -26,59 +25,55 @@ export default function EmailEntry() {
   const filteredEmails = emails.filter(e => e !== '');
 
   return (
-    <div className="glass-card p-8 md:p-12 w-full animate-in fade-in slide-in-from-right-4 duration-700">
-      <div className="flex justify-between items-start mb-10">
+    <div className="glass-card" style={{ padding: '3rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2.5rem' }}>
         <div>
-          <h1 className="text-3xl font-black uppercase tracking-tighter bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
-            Destinatarios
-          </h1>
-          <p className="text-[10px] text-gray-500 uppercase tracking-widest font-light mt-1">
-            Configuración de canales de distribución del comprobante.
+          <h1 className="title-premium">Destinatarios</h1>
+          <p className="subtitle-premium" style={{ marginBottom: 0 }}>
+            Configuración de canales de distribución.
           </p>
         </div>
-        <div className="bg-white/5 p-3 rounded-full">
-          <Mail className="text-[#0066FF]" size={24} />
+        <div style={{ background: 'rgba(255,255,255,0.05)', padding: '0.75rem', borderRadius: '50%' }}>
+          <Mail style={{ color: 'var(--bugatti-blue)' }} size={24} />
         </div>
       </div>
 
-      <form onSubmit={handleAddEmail} className="space-y-6">
-        <div className="space-y-2">
-          <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 block">
-            Añadir Correo Electrónico
-          </label>
-          <div className="flex gap-2">
-            <input
-              type="email"
-              value={newEmail}
-              onChange={(e) => setNewEmail(e.target.value)}
-              placeholder="ejemplo@dominio.com"
-              className="flex-1 bg-white/[0.03] border border-white/10 p-4 text-white focus:outline-none focus:border-[#0066FF] transition-all duration-300 rounded-sm"
-            />
-            <button
-              type="submit"
-              className="px-6 bg-white/5 border border-white/10 text-white hover:border-[#0066FF] hover:text-[#0066FF] transition-all duration-300 rounded-sm"
-            >
-              <Plus size={20} />
-            </button>
-          </div>
+      <form onSubmit={handleAddEmail} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <label className="form-label">Añadir Correo Electrónico</label>
+        <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <input
+            type="email"
+            value={newEmail}
+            onChange={(e) => setNewEmail(e.target.value)}
+            placeholder="ejemplo@dominio.com"
+            className="form-input"
+          />
+          <button
+            type="submit"
+            className="btn-bugatti-outline"
+            style={{ width: 'auto', padding: '0 1.5rem' }}
+          >
+            <Plus size={20} />
+          </button>
         </div>
       </form>
 
-      <div className="mt-8 space-y-3 min-h-[120px]">
+      <div style={{ marginTop: '2rem', minHeight: '120px', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
         {filteredEmails.length === 0 ? (
-          <div className="h-full flex items-center justify-center border border-dashed border-white/5 rounded-sm p-8">
-            <p className="text-[10px] text-gray-600 uppercase tracking-widest">No hay correos registrados</p>
+          <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px dashed rgba(255,255,255,0.05)', borderRadius: '2px', padding: '2rem' }}>
+            <p style={{ fontSize: '0.65rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.15em' }}>No hay correos registrados</p>
           </div>
         ) : (
           filteredEmails.map((email) => (
             <div
               key={email}
-              className="flex justify-between items-center p-4 bg-white/[0.02] border border-white/5 rounded-sm animate-in fade-in slide-in-from-top-2"
+              className="animate-up"
+              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '2px' }}
             >
-              <span className="text-sm font-medium text-gray-300">{email}</span>
+              <span style={{ fontSize: '0.85rem', color: '#ccc' }}>{email}</span>
               <button
                 onClick={() => removeEmail(email)}
-                className="text-gray-600 hover:text-red-500 transition-colors"
+                style={{ color: 'var(--text-muted)', background: 'none' }}
               >
                 <X size={16} />
               </button>
@@ -87,19 +82,21 @@ export default function EmailEntry() {
         )}
       </div>
 
-      <div className="pt-8 border-t border-white/5 mt-10 flex gap-4">
+      <div style={{ paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '2.5rem', display: 'flex', gap: '1rem' }}>
         <button
           onClick={prevStep}
-          className="flex-none p-5 border border-white/10 text-white hover:bg-white/5 transition-all duration-300 rounded-sm"
+          className="btn-bugatti-outline"
+          style={{ width: 'auto', padding: '1.25rem' }}
         >
           <ArrowLeft size={20} />
         </button>
         <button
           onClick={nextStep}
           disabled={filteredEmails.length === 0}
-          className="flex-1 bg-[#0066FF] text-white py-5 font-black uppercase tracking-[0.2em] text-xs hover:scale-[1.02] hover:shadow-[0_10px_30px_rgba(0,102,255,0.4)] transition-all duration-500 disabled:opacity-30 disabled:hover:scale-100 flex items-center justify-center gap-3 group"
+          className="btn-bugatti-primary"
+          style={{ opacity: filteredEmails.length === 0 ? 0.3 : 1 }}
         >
-          <Send size={18} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+          <Send size={18} />
           Preparar Documento Final
         </button>
       </div>

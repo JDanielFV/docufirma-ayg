@@ -19,17 +19,17 @@ export default function ProductForm() {
   };
 
   return (
-    <div className="glass-card p-8 md:p-12 w-full animate-in fade-in slide-in-from-bottom-4 duration-1000">
-      <h1 className="text-3xl font-black uppercase tracking-tighter mb-2 bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
+    <div className="glass-card" style={{ padding: '3rem' }}>
+      <h1 className="title-premium">
         Suministro<br />Premium
       </h1>
-      <p className="text-xs text-gray-500 uppercase tracking-widest mb-10 font-light">
+      <p className="subtitle-premium">
         Configuración técnica de entrega. Nivel de precisión Bugatti.
       </p>
 
-      <form onSubmit={handleAdd} className="space-y-6">
-        <div className="space-y-2">
-          <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 block">
+      <form onSubmit={handleAdd} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <label className="form-label">
             Componente / Producto
           </label>
           <input
@@ -37,13 +37,13 @@ export default function ProductForm() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Ej. Chiron Carbon Pack"
-            className="w-full bg-white/[0.03] border border-white/10 p-4 text-white focus:outline-none focus:border-[#0066FF] focus:bg-white/[0.08] transition-all duration-300 rounded-sm"
+            className="form-input"
           />
         </div>
 
-        <div className="flex gap-4">
-          <div className="flex-1 space-y-2">
-            <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-600 block">
+        <div style={{ display: 'flex', gap: '1rem' }}>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <label className="form-label">
               Cantidad
             </label>
             <input
@@ -51,13 +51,14 @@ export default function ProductForm() {
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
               min="1"
-              className="w-full bg-white/[0.03] border border-white/10 p-4 text-white focus:outline-none focus:border-[#0066FF] transition-all duration-300 rounded-sm"
+              className="form-input"
             />
           </div>
-          <div className="flex-none flex items-end">
+          <div style={{ display: 'flex', alignItems: 'flex-end' }}>
             <button
               type="submit"
-              className="h-[58px] px-6 border border-white/20 text-white hover:border-[#0066FF] hover:text-[#0066FF] transition-all duration-300 uppercase text-[10px] font-bold tracking-widest flex items-center gap-2"
+              className="btn-bugatti-outline"
+              style={{ height: '54px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
             >
               <Plus size={16} />
               Registrar
@@ -67,44 +68,41 @@ export default function ProductForm() {
       </form>
 
       {products.length > 0 && (
-        <div className="mt-12 space-y-1">
-          <div className="h-px bg-white/5 w-full mb-4" />
-          <div className="max-height-[200px] overflow-y-auto pr-2 custom-scrollbar">
-            {products.map((product) => (
-              <div
-                key={product.id}
-                className="flex justify-between items-center py-4 border-b border-white/5 group animate-in fade-in slide-in-from-left-2 duration-500"
-              >
-                <div>
-                  <div className="font-bold text-sm text-white uppercase tracking-tight">
-                    {product.name}
-                  </div>
-                  <div className="text-[10px] text-gray-500 font-mono">
-                    ID: {product.id.slice(0, 8)}
-                  </div>
+        <div className="premium-list">
+          {products.map((product) => (
+            <div key={product.id} className="premium-item">
+              <div>
+                <div style={{ fontWeight: 700, fontSize: '0.9rem', textTransform: 'uppercase' }}>
+                  {product.name}
                 </div>
-                <div className="flex items-center gap-6">
-                  <span className="text-[#0066FF] font-black text-lg">x{product.quantity}</span>
-                  <button
-                    onClick={() => removeProduct(product.id)}
-                    className="text-gray-600 hover:text-red-500 transition-colors"
-                  >
-                    <Trash2 size={16} />
-                  </button>
+                <div style={{ fontSize: '0.6rem', color: 'var(--text-muted)', fontFamily: 'monospace' }}>
+                  ID: {product.id.slice(0, 8)}
                 </div>
               </div>
-            ))}
-          </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                <span style={{ color: 'var(--bugatti-blue)', fontWeight: 900, fontSize: '1.1rem' }}>
+                  x{product.quantity}
+                </span>
+                <button
+                  onClick={() => removeProduct(product.id)}
+                  style={{ color: 'var(--text-muted)', background: 'none' }}
+                >
+                  <Trash2 size={16} />
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       )}
 
       <button
         onClick={nextStep}
         disabled={products.length === 0}
-        className="w-full mt-10 bg-[#0066FF] text-white py-5 font-black uppercase tracking-[0.2em] text-xs hover:scale-[1.02] hover:shadow-[0_10px_30px_rgba(0,102,255,0.4)] transition-all duration-500 disabled:opacity-30 disabled:hover:scale-100 disabled:hover:shadow-none flex items-center justify-center gap-3 group"
+        className="btn-bugatti-primary"
+        style={{ marginTop: '2.5rem', opacity: products.length === 0 ? 0.3 : 1 }}
       >
         Continuar al Cotejo
-        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+        <ArrowRight size={16} />
       </button>
     </div>
   );

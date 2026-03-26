@@ -1,0 +1,135 @@
+.container {
+  background: var(--card);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--foreground);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.inputs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--primary);
+}
+
+.inputQty {
+  width: 80px;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  outline: none;
+}
+
+.addButton {
+  background: var(--primary);
+  color: white;
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.addButton:hover {
+  background: var(--primary-hover);
+}
+
+.list {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  min-height: 200px;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.empty {
+  margin: auto;
+  color: var(--secondary);
+  font-size: 0.875rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemName {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.itemQty {
+  font-size: 0.875rem;
+  color: var(--secondary);
+}
+
+.removeButton {
+  color: var(--error);
+  padding: 0.5rem;
+  background: transparent;
+}
+
+.removeButton:hover {
+  background: rgba(220, 38, 38, 0.1);
+  border-radius: 50%;
+}
+
+.nextButton {
+  width: 100%;
+  background: var(--success);
+  color: white;
+  padding: 1rem;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.nextButton:disabled {
+  background: var(--border);
+  cursor: not-allowed;
+}

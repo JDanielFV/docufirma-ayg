@@ -1,0 +1,94 @@
+.container {
+  background: var(--card);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: var(--secondary);
+  margin-bottom: 1.5rem;
+}
+
+.canvasWrapper {
+  width: 100%;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  background: #f8fafc;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.sigCanvas {
+  width: 100% !important;
+  height: 200px !important;
+  touch-action: none;
+}
+
+.controls {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+
+.clearButton {
+  background: transparent;
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  padding: 0.5rem;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.backButton {
+  flex: 1;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--secondary);
+  padding: 1rem;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.finishButton {
+  flex: 2;
+  background: var(--primary);
+  color: white;
+  padding: 1rem;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

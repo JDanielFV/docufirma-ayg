@@ -41,62 +41,58 @@ export default function SignaturePad() {
   };
 
   return (
-    <div className="glass-card p-8 md:p-12 w-full animate-in fade-in slide-in-from-top-4 duration-700">
-      <div className="flex justify-between items-start mb-10">
+    <div className="glass-card" style={{ padding: '3rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2.5rem' }}>
         <div>
-          <h1 className="text-3xl font-black uppercase tracking-tighter bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
-            Firma Digital
-          </h1>
-          <p className="text-[10px] text-gray-500 uppercase tracking-widest font-light mt-1">
-            Validación de autenticidad y aceptación de entrega.
+          <h1 className="title-premium">Firma Digital</h1>
+          <p className="subtitle-premium" style={{ marginBottom: 0 }}>
+            Validación de autenticidad y aceptación.
           </p>
         </div>
       </div>
 
-      <div className="space-y-4">
-        <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0066FF] block mb-2">
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <label className="form-label" style={{ color: 'var(--bugatti-blue)' }}>
           Área de Firma Técnica
         </label>
-        <div className="relative group">
-          <div className="absolute -inset-0.5 bg-[#0066FF] opacity-10 blur group-hover:opacity-20 transition duration-1000"></div>
-          <div className="relative bg-black border border-white/10 rounded-sm overflow-hidden">
-            <SignatureCanvas
-              ref={sigCanvas}
-              penColor="#0066FF"
-              canvasProps={{
-                className: 'w-full h-64 cursor-crosshair',
-              }}
-            />
-          </div>
+        <div style={{ position: 'relative', background: '#000', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '2px', overflow: 'hidden' }}>
+          <SignatureCanvas
+            ref={sigCanvas}
+            penColor="#0066FF"
+            canvasProps={{
+              style: { width: '100%', height: '250px', cursor: 'crosshair' }
+            }}
+          />
           <button
             onClick={clear}
-            className="absolute top-4 right-4 p-2 bg-white/5 text-gray-500 hover:text-white transition-colors rounded-sm"
-            title="Limpiar firma"
+            style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'rgba(255,255,255,0.05)', color: '#666', border: 'none', padding: '0.5rem', borderRadius: '2px', cursor: 'pointer' }}
           >
             <Eraser size={18} />
           </button>
         </div>
-        <p className="text-[9px] text-gray-600 uppercase tracking-widest text-center mt-4">
+        <p style={{ fontSize: '0.6rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.15em', textAlign: 'center', marginTop: '1rem' }}>
           La firma será incrustada en el PDF y destruida tras el envío.
         </p>
       </div>
 
-      <div className="pt-10 flex gap-4">
+      <div style={{ paddingTop: '2.5rem', display: 'flex', gap: '1rem' }}>
         <button
           onClick={prevStep}
           disabled={isSubmitting}
-          className="flex-none p-5 border border-white/10 text-white hover:bg-white/5 transition-all duration-300 rounded-sm disabled:opacity-30"
+          className="btn-bugatti-outline"
+          style={{ width: 'auto', padding: '1.25rem', opacity: isSubmitting ? 0.3 : 1 }}
         >
           <ArrowLeft size={20} />
         </button>
         <button
           onClick={handleSubmit}
           disabled={isSubmitting}
-          className="flex-1 bg-[#0066FF] text-white py-5 font-black uppercase tracking-[0.2em] text-xs hover:scale-[1.02] hover:shadow-[0_10px_30px_rgba(0,102,255,0.4)] transition-all duration-500 disabled:opacity-50 disabled:hover:scale-100 flex items-center justify-center gap-3 overflow-hidden"
+          className="btn-bugatti-primary"
+          style={{ opacity: isSubmitting ? 0.5 : 1 }}
         >
           {isSubmitting ? (
             <>
-              <Loader2 size={18} className="animate-spin" />
+              <Loader2 size={18} style={{ animation: 'spin 1s linear infinite' }} />
               Procesando Ingeniería...
             </>
           ) : (
@@ -107,6 +103,9 @@ export default function SignaturePad() {
           )}
         </button>
       </div>
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      `}} />
     </div>
   );
 }

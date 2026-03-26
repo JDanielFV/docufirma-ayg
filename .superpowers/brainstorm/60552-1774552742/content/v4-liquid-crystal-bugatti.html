@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docufirma AyG - Bugatti Liquid Crystal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bugatti-blue: #0066FF;
+            --deep-black: #050505;
+            --crystal-glow: rgba(0, 102, 255, 0.4);
+            --glass: rgba(10, 10, 10, 0.75);
+            --iridescent: linear-gradient(90deg, #0066FF, #00D1FF, #0066FF);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--deep-black);
+            background-image: 
+                radial-gradient(circle at 2px 2px, rgba(255,255,255,0.03) 1px, transparent 0);
+            background-size: 32px 32px;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Fluid Liquid Crystal Background Element */
+        .liquid-blob {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: var(--bugatti-blue);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.2;
+            animation: morph 12s infinite alternate ease-in-out;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 50%; transform: translate(-10%, -10%) scale(1); }
+            33% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: translate(10%, 5%) scale(1.1); }
+            66% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; transform: translate(-5%, 10%) scale(0.9); }
+            100% { border-radius: 50%; transform: translate(-10%, -10%) scale(1); }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            perspective: 2000px;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(30px) saturate(150%);
+            -webkit-backdrop-filter: blur(30px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 48px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9);
+            animation: card-entry 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Iridescent Liquid Edge */
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--iridescent);
+            background-size: 200% auto;
+            animation: flow 4s linear infinite;
+        }
+
+        @keyframes flow {
+            to { background-position: 200% center; }
+        }
+
+        h1 {
+            font-weight: 900;
+            font-size: 32px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: -0.04em;
+            line-height: 0.9;
+            background: linear-gradient(to bottom, #fff, #999);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        label {
+            display: block;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 15px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--bugatti-blue);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 15px rgba(0, 102, 255, 0.2);
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 20px;
+            background: var(--bugatti-blue);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: 0.4s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4);
+        }
+
+        @keyframes card-entry {
+            from { opacity: 0; transform: translateY(40px) scale(0.95); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="liquid-blob"></div>
+    <div class="container">
+        <div class="glass-card">
+            <h1>Docufirma<br>Liquid Crystal</h1>
+            <p class="subtitle">Precision Engineering meets Fluid Design.</p>
+            
+            <div style="margin-bottom: 24px;">
+                <label>Componente Premium</label>
+                <input type="text" placeholder="Chiron Carbon Pack">
+            </div>
+
+            <div style="display: flex; gap: 16px;">
+                <div style="flex: 1;">
+                    <label>Cantidad</label>
+                    <input type="number" placeholder="1" min="1">
+                </div>
+                <div style="flex: 1; align-self: flex-end;">
+                    <button style="background: transparent; border: 1px solid #333; color: #888; padding: 12px; width: 100%; font-size: 11px; font-weight: 700; cursor: pointer; border-radius: 4px;">+ REGISTRAR</button>
+                </div>
+            </div>
+
+            <button class="btn-primary">Avanzar al Cotejo</button>
+        </div>
+    </div>
+</body>
+</html>
