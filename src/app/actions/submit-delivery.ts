@@ -28,28 +28,32 @@ export async function submitDelivery(data: DeliveryData) {
         products: data.products, 
         date, 
         signature: data.signature 
-      })
+      }) as any
     );
 
     const deliveryId = crypto.randomUUID();
 
     // 2. Guardar registro en la Base de Datos (SIN LA FIRMA, solo metadata)
-    const { error: dbError } = await supabase
-      .from('entregas')
-      .insert({
-        id: deliveryId,
-        productos: data.products,
-        emails: data.emails,
-        pdf_path: null // Ya no guardamos el PDF en storage
-      });
+    if (supabase) {
+      const { error: dbError } = await supabase
+        .from('entregas')
+        .insert({
+          id: deliveryId,
+          productos: data.products,
+          emails: data.emails,
+          pdf_path: null // Ya no guardamos el PDF en storage
+        });
 
-    if (dbError) console.error('Error en DB:', dbError);
+      if (dbError) console.error('Error en DB:', dbError);
+    } else {
+      console.warn('Skipping DB insert because Supabase client is not initialized.');
+    }
 
     // 3. Enviar Email con Resend desde notificaciones@sivd.app
     const { data: resendData, error: resendError } = await resend.emails.send({
       from: 'notificaciones@sivd.app',
       to: data.emails,
-      subject: 'Comprobante de Entrega - Bugatti Edition',
+      subject: 'Comprobante de Entrega',
       react: React.createElement(DeliveryEmail, { date }),
       attachments: [
         {

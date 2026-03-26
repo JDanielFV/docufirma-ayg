@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Textos - Docufirma AyG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bugatti-blue: #0066FF;
+            --deep-black: #050505;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--deep-black);
+            color: white;
+            margin: 0;
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        .header {
+            border-left: 4px solid var(--bugatti-blue);
+            padding-left: 20px;
+            margin-bottom: 60px;
+        }
+
+        h1 { font-weight: 900; text-transform: uppercase; letter-spacing: -1px; margin: 0; }
+        p.desc { color: #666; font-size: 14px; margin-top: 5px; }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--bugatti-blue);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+        }
+
+        .text-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .id-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--bugatti-blue);
+            color: white;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 4px 10px;
+            border-radius: 2px;
+            box-shadow: 0 4px 10px rgba(0, 102, 255, 0.3);
+        }
+
+        .label {
+            font-size: 9px;
+            text-transform: uppercase;
+            color: #444;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .content {
+            font-size: 15px;
+            color: #ccc;
+        }
+
+        .content.italic { font-style: italic; font-size: 13px; color: #888; }
+        .content.bold { font-weight: 700; color: #fff; }
+
+        .email-preview {
+            background: #111;
+            border: 1px solid #222;
+            padding: 40px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Catálogo de Textos</h1>
+        <p class="desc">Docufirma AyG - Bugatti Liquid Crystal Edition</p>
+    </div>
+
+    <!-- GLOBAL / SHELL -->
+    <div class="section">
+        <div class="section-title">Global / Estructura</div>
+        <div class="grid">
+            <div class="text-card">
+                <span class="id-badge">SH-01</span>
+                <span class="label">Logo App</span>
+                <div class="content bold">docufirma-ayg</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">SH-02</span>
+                <span class="label">Tagline Header</span>
+                <div class="content">Control de Entregas</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">SH-03</span>
+                <span class="label">Copyright Footer</span>
+                <div class="content">© 2026 AYG - Todos los derechos reservados</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PASO 1 -->
+    <div class="section">
+        <div class="section-title">Paso 1: Captura de Productos</div>
+        <div class="grid">
+            <div class="text-card">
+                <span class="id-badge">P1-T1</span>
+                <span class="label">Título Principal</span>
+                <div class="content bold">Suministro Premium</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">P1-T2</span>
+                <span class="label">Subtítulo</span>
+                <div class="content">Configuración técnica de entrega. Nivel de precisión Bugatti.</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">P1-L1</span>
+                <span class="label">Label Input Producto</span>
+                <div class="content italic">Componente / Producto</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">P1-B1</span>
+                <span class="label">Botón Registrar</span>
+                <div class="content bold">REGISTRAR</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">P1-B2</span>
+                <span class="label">Botón Continuar</span>
+                <div class="content bold">CONTINUAR AL COTEJO</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PASO 2 -->
+    <div class="section">
+        <div class="section-title">Paso 2: Cotejo (Preview)</div>
+        <div class="grid">
+            <div class="text-card">
+                <span class="id-badge">P2-T1</span>
+                <span class="label">Título</span>
+                <div class="content bold">Cotejo Técnico</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">P2-T2</span>
+                <span class="label">Subtítulo</span>
+                <div class="content">Revisión de configuración previa a la firma.</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">P2-W1</span>
+                <span class="label">Advertencia Legal</span>
+                <div class="content italic">* Este documento es un borrador digital. Al confirmar, usted acepta que los productos listados coinciden con la entrega física.</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">P2-B1</span>
+                <span class="label">Botón Confirmar</span>
+                <div class="content bold">CONFIRMAR CONFIGURACIÓN</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PASO 3 -->
+    <div class="section">
+        <div class="section-title">Paso 3: Destinatarios</div>
+        <div class="grid">
+            <div class="text-card">
+                <span class="id-badge">P3-T1</span>
+                <span class="label">Título</span>
+                <div class="content bold">Destinatarios</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">P3-T2</span>
+                <span class="label">Subtítulo</span>
+                <div class="content">Configuración de canales de distribución.</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">P3-B1</span>
+                <span class="label">Botón Final</span>
+                <div class="content bold">PREPARAR DOCUMENTO FINAL</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PASO 4 -->
+    <div class="section">
+        <div class="section-title">Paso 4: Firma</div>
+        <div class="grid">
+            <div class="text-card">
+                <span class="id-badge">P4-T1</span>
+                <span class="label">Título</span>
+                <div class="content bold">Firma Digital</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">P4-T2</span>
+                <span class="label">Subtítulo</span>
+                <div class="content">Validación de autenticidad y aceptación.</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">P4-W1</span>
+                <span class="label">Nota de Privacidad</span>
+                <div class="content italic">La firma será incrustada en el PDF y destruida tras el envío.</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">P4-B1</span>
+                <span class="label">Botón Enviar</span>
+                <div class="content bold">FINALIZAR Y ENVIAR</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PASO 5 -->
+    <div class="section">
+        <div class="section-title">Paso 5: Éxito</div>
+        <div class="grid">
+            <div class="text-card">
+                <span class="id-badge">P5-T1</span>
+                <span class="label">Título</span>
+                <div class="content bold">Entrega Finalizada</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">P5-T2</span>
+                <span class="label">Subtítulo</span>
+                <div class="content">Protocolo Bugatti Edition completado.</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">P5-B1</span>
+                <span class="label">Botón Nuevo</span>
+                <div class="content bold">INICIAR NUEVO PROTOCOLO</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EMAIL -->
+    <div class="section">
+        <div class="section-title">Email (Cuerpo del Correo)</div>
+        <div class="email-preview">
+            <div class="text-card" style="margin-bottom: 20px;">
+                <span class="id-badge">E1-SUB</span>
+                <span class="label">Asunto del Correo</span>
+                <div class="content bold">Comprobante de Entrega - Bugatti Edition</div>
+            </div>
+            <div class="text-card" style="margin-bottom: 20px;">
+                <span class="id-badge">E1-T1</span>
+                <span class="label">Cuerpo - Introducción</span>
+                <div class="content">Se ha procesado una nueva entrega de suministros oficiales con nivel de precisión técnica validado.</div>
+            </div>
+            <div class="text-card" style="margin-bottom: 20px;">
+                <span class="id-badge">E1-T2</span>
+                <span class="label">Cuerpo - Nota Seguridad</span>
+                <div class="content">El comprobante oficial se encuentra adjunto a este correo en formato PDF. Por seguridad y privacidad, la firma digital ha sido destruida del sistema tras la generación de este documento.</div>
+            </div>
+            <div class="text-card">
+                <span class="id-badge">E1-F1</span>
+                <span class="label">Pie de Página</span>
+                <div class="content italic">© 2025 docufirma-ayg | Engineering by Bugatti Aesthetics</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

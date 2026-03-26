@@ -55,6 +55,7 @@ body {
     radial-gradient(circle at 2px 2px, rgba(255,255,255,0.03) 1px, transparent 0);
   background-size: 32px 32px;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 /* Common Premium Glass Card */
@@ -68,6 +69,10 @@ body {
   position: relative;
   overflow: hidden;
   animation: card-entry 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: clamp(1.5rem, 5vw, 3rem); /* Highly responsive padding */
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .glass-card::before {
@@ -84,10 +89,10 @@ body {
 /* Typography Helpers */
 .title-premium {
   font-weight: 900;
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2rem); /* Highly responsive font size */
   text-transform: uppercase;
   letter-spacing: -0.04em;
-  line-height: 0.9;
+  line-height: 1.1;
   margin-bottom: 0.5rem;
   background: linear-gradient(to bottom, #fff, #999);
   -webkit-background-clip: text;
@@ -95,13 +100,27 @@ body {
 }
 
 .subtitle-premium {
-  font-size: 0.8rem;
+  font-size: clamp(0.7rem, 2vw, 0.8rem);
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.15em;
   font-weight: 300;
-  margin-bottom: 2.5rem;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
 }
+
+/* Responsive Flex Helpers */
+.flex-responsive {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .flex-responsive {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
 
 /* Form Helpers */
 .form-label {

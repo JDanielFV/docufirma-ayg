@@ -12,7 +12,7 @@ export default function Shell({ children }: ShellProps) {
         <div className={styles.container}>
           <div className={styles.logo}>
             <FileSignature className={styles.icon} />
-            <h1>docufirma-ayg</h1>
+            <h1>Papelería Notarial y Corporativa A&G</h1>
           </div>
           <p className={styles.tagline}>Control de Entregas</p>
         </div>

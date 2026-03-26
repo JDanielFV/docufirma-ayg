@@ -31,8 +31,16 @@ export function DeliveryProvider({ children }: { children: ReactNode }) {
   const [step, setStep] = useState(1);
 
   const addProduct = (name: string, quantity: number) => {
+    // Fallback para generar IDs en contextos HTTP locales (donde crypto no está disponible)
+    const generateId = () => {
+      if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+        return crypto.randomUUID();
+      }
+      return Math.random().toString(36).substring(2, 15);
+    };
+
     const newProduct: Product = {
-      id: crypto.randomUUID(),
+      id: generateId(),
       name,
       quantity,
     };

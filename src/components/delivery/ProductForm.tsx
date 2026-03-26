@@ -9,39 +9,47 @@ export default function ProductForm() {
   const [name, setName] = useState('');
   const [quantity, setQuantity] = useState(1);
 
-  const handleAdd = (e: React.FormEvent) => {
+  const handleAdd = (e: React.FormEvent | React.MouseEvent) => {
     e.preventDefault();
     if (name.trim()) {
       addProduct(name, quantity);
       setName('');
       setQuantity(1);
+    } else {
+      alert('Por favor, ingrese el nombre del producto.');
     }
   };
 
   return (
-    <div className="glass-card" style={{ padding: '3rem' }}>
+    <div className="glass-card">
       <h1 className="title-premium">
-        Suministro<br />Premium
+        Cotejo de<br />Suministro
       </h1>
       <p className="subtitle-premium">
-        Configuración técnica de entrega. Nivel de precisión Bugatti.
+        Por favor verifique que todos los datos son correctos
       </p>
 
-      <form onSubmit={handleAdd} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           <label className="form-label">
-            Componente / Producto
+            Producto
           </label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                handleAdd(e as any);
+              }
+            }}
             placeholder="Ej. Chiron Carbon Pack"
             className="form-input"
           />
         </div>
 
-        <div style={{ display: 'flex', gap: '1rem' }}>
+        <div className="flex-responsive">
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
             <label className="form-label">
               Cantidad
@@ -50,22 +58,29 @@ export default function ProductForm() {
               type="number"
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  handleAdd(e as any);
+                }
+              }}
               min="1"
               className="form-input"
             />
           </div>
-          <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-end', width: '100%' }}>
             <button
-              type="submit"
+              type="button"
+              onClick={handleAdd}
               className="btn-bugatti-outline"
-              style={{ height: '54px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+              style={{ height: '54px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', width: '100%', touchAction: 'manipulation' }}
             >
               <Plus size={16} />
               Registrar
             </button>
           </div>
         </div>
-      </form>
+      </div>
 
       {products.length > 0 && (
         <div className="premium-list">

@@ -21,17 +21,17 @@ export const DeliveryEmail = ({ date }: DeliveryEmailProps) => {
   return (
     <Html>
       <Head />
-      <Preview>Comprobante de Entrega - Bugatti Edition</Preview>
+      <Preview>Comprobante de Entrega</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={header}>
-            <Heading style={h1}>Docufirma</Heading>
-            <Text style={edition}>Bugatti Liquid Crystal Edition</Text>
+            <Heading style={h1}>A&amp;G</Heading>
+            <Text style={edition}>Papelería Notarial y Corporativa</Text>
           </Section>
           
           <Section style={content}>
             <Text style={paragraph}>
-              Se ha procesado una nueva entrega de suministros oficiales con nivel de precisión técnica validado.
+              Agradecemos sinceramente su preferencia en la compra de nuestro material. Esperamos que los productos entregados cumplan con sus expectativas y que esta sea solo una de muchas colaboraciones exitosas en el futuro.
             </Text>
             
             <Section style={detailsBox}>
@@ -48,7 +48,7 @@ export const DeliveryEmail = ({ date }: DeliveryEmailProps) => {
             <Text style={footer}>
               Este es un correo automático de control de suministros. 
               <br />
-              © 2025 docufirma-ayg | Engineering by Bugatti Aesthetics
+              © 2025 A&amp;G | NEXTCODE
             </Text>
           </Section>
         </Container>

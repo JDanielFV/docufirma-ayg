@@ -41,7 +41,7 @@ export default function SignaturePad() {
   };
 
   return (
-    <div className="glass-card" style={{ padding: '3rem' }}>
+    <div className="glass-card">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2.5rem' }}>
         <div>
           <h1 className="title-premium">Firma Digital</h1>
@@ -60,7 +60,7 @@ export default function SignaturePad() {
             ref={sigCanvas}
             penColor="#0066FF"
             canvasProps={{
-              style: { width: '100%', height: '250px', cursor: 'crosshair' }
+              style: { width: '100%', height: '250px', cursor: 'crosshair', touchAction: 'none' }
             }}
           />
           <button
@@ -75,12 +75,12 @@ export default function SignaturePad() {
         </p>
       </div>
 
-      <div style={{ paddingTop: '2.5rem', display: 'flex', gap: '1rem' }}>
+      <div className="flex-responsive" style={{ paddingTop: '2.5rem' }}>
         <button
           onClick={prevStep}
           disabled={isSubmitting}
           className="btn-bugatti-outline"
-          style={{ width: 'auto', padding: '1.25rem', opacity: isSubmitting ? 0.3 : 1 }}
+          style={{ width: '100%', padding: '1.25rem', opacity: isSubmitting ? 0.3 : 1, display: 'flex', justifyContent: 'center' }}
         >
           <ArrowLeft size={20} />
         </button>

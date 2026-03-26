@@ -8,14 +8,14 @@ export default function SuccessView() {
   const { resetDelivery, emails } = useDelivery();
 
   return (
-    <div className="glass-card" style={{ padding: '4rem', textAlign: 'center' }}>
+    <div className="glass-card" style={{ textAlign: 'center' }}>
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2.5rem', position: 'relative' }}>
         <div style={{ position: 'absolute', width: '120px', height: '120px', background: 'var(--bugatti-blue)', filter: 'blur(40px)', opacity: 0.3 }}></div>
         <CheckCircle2 style={{ color: 'var(--bugatti-blue)', position: 'relative' }} size={80} />
       </div>
 
-      <h1 className="title-premium" style={{ fontSize: '2.5rem' }}>Entrega Finalizada</h1>
-      <p className="subtitle-premium">Protocolo Bugatti Edition completado.</p>
+      <h1 className="title-premium" style={{ fontSize: '2.5rem' }}>Entrega Confirmada</h1>
+      <p className="subtitle-premium">Nos alegra que su producto sea lo que esperaba</p>
 
       <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '2px', padding: '2rem', marginBottom: '3rem', textAlign: 'left' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '1rem', marginBottom: '1rem' }}>
@@ -38,7 +38,7 @@ export default function SuccessView() {
         className="btn-bugatti-primary"
       >
         <RefreshCw size={18} />
-        Iniciar Nuevo Protocolo
+        Nuevo Cotejo
       </button>
     </div>
   );
