@@ -155,7 +155,7 @@ export const DeliveryPDF = ({ products, date, signature }: DeliveryPDFProps) => 
       
       <View style={styles.watermarkContainer}>
         <View style={styles.watermarkImage}>
-          <LogoSVG fill="#171717" width={450} height={450} />
+          <LogoSVG fill="#f0f0f0" width={450} height={450} />
         </View>
       </View>
 
