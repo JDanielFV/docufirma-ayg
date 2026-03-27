@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
-  title: "docufirma-ayg | Sistema de Suministros",
+  title: "Papelería Notarial | Entregas",
   description: "Sistema de firma digital para control de entregas",
 };
 
@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={cn("font-sans light", geist.variable)}>
-      <body className="min-h-screen bg-slate-50 antialiased overflow-x-hidden text-slate-900">
+    <html lang="es" className={cn("font-sans", geist.variable)}>
+      <body className="min-h-screen bg-[#F8F9FA] antialiased overflow-x-hidden text-slate-900">
         <Shell>{children}</Shell>
       </body>
     </html>
