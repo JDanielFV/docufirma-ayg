@@ -1,5 +1,6 @@
 import { Document, Page, Text, View, StyleSheet, Image } from '@react-pdf/renderer';
 import { Product } from '@/hooks/useDeliveryStore';
+import { LogoSVG } from './LogoSVG';
 
 const styles = StyleSheet.create({
   page: {
@@ -146,22 +147,23 @@ interface DeliveryPDFProps {
   products: Product[];
   date: string;
   signature: string;
-  logoUrl?: string;
 }
 
-export const DeliveryPDF = ({ products, date, signature, logoUrl }: DeliveryPDFProps) => (
+export const DeliveryPDF = ({ products, date, signature }: DeliveryPDFProps) => (
   <Document>
     <Page size="A4" style={styles.page}>
       
-      {logoUrl && (
-        <View style={styles.watermarkContainer}>
-          <Image src={logoUrl} style={styles.watermarkImage} />
+      <View style={styles.watermarkContainer}>
+        <View style={styles.watermarkImage}>
+          <LogoSVG fill="#171717" width={450} height={450} />
         </View>
-      )}
+      </View>
 
       <View style={styles.headerContainer}>
         <View style={styles.headerLeft}>
-          {logoUrl ? <Image src={logoUrl} style={styles.logo} /> : null}
+          <View style={styles.logo}>
+            <LogoSVG fill="#D4AF37" width={60} height={60} />
+          </View>
           <View style={styles.titleGroup}>
             <Text style={styles.mainTitle}>Papelería Notarial</Text>
             <Text style={styles.subTitle}>Comprobante Oficial de Entrega</Text>

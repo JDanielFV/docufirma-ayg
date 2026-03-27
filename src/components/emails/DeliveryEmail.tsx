@@ -18,6 +18,10 @@ interface DeliveryEmailProps {
   date: string;
 }
 
+const baseUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : 'https://docufirma-ayg.vercel.app';
+
 export const DeliveryEmail = ({ date }: DeliveryEmailProps) => {
   return (
     <Html>
@@ -26,6 +30,13 @@ export const DeliveryEmail = ({ date }: DeliveryEmailProps) => {
       <Body style={main}>
         <Container style={container}>
           <Section style={header}>
+            <Img
+              src={`${baseUrl}/logo.png`}
+              width="48"
+              height="48"
+              alt="Papelería Notarial"
+              style={logo}
+            />
             <Heading style={h1}>Papelería Notarial</Heading>
             <Text style={edition}>Comprobante Oficial de Entrega</Text>
           </Section>
@@ -87,6 +98,10 @@ const header = {
   borderLeft: '4px solid #D4AF37',
   paddingLeft: '20px',
   marginBottom: '40px',
+};
+
+const logo = {
+  marginBottom: '16px',
 };
 
 const h1 = {
