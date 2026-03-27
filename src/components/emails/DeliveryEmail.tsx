@@ -10,6 +10,7 @@ import {
   Img,
   Preview,
   Hr,
+  Button
 } from '@react-email/components';
 import * as React from 'react';
 
@@ -21,17 +22,20 @@ export const DeliveryEmail = ({ date }: DeliveryEmailProps) => {
   return (
     <Html>
       <Head />
-      <Preview>Comprobante de Entrega</Preview>
+      <Preview>Comprobante de Entrega - Papelería Notarial</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={header}>
-            <Heading style={h1}>A&amp;G</Heading>
-            <Text style={edition}>Papelería Notarial y Corporativa</Text>
+            <Heading style={h1}>Papelería Notarial</Heading>
+            <Text style={edition}>Comprobante Oficial de Entrega</Text>
           </Section>
           
           <Section style={content}>
             <Text style={paragraph}>
-              Agradecemos sinceramente su preferencia en la compra de nuestro material. Esperamos que los productos entregados cumplan con sus expectativas y que esta sea solo una de muchas colaboraciones exitosas en el futuro.
+              <strong>Estimado cliente,</strong>
+            </Text>
+            <Text style={paragraph}>
+              Agradecemos sinceramente su preferencia. Este mensaje confirma la recepción y procesamiento exitoso de su solicitud. Esperamos que nuestro material cumpla con los más altos estándares y sus expectativas.
             </Text>
             
             <Section style={detailsBox}>
@@ -40,15 +44,24 @@ export const DeliveryEmail = ({ date }: DeliveryEmailProps) => {
             </Section>
 
             <Text style={paragraph}>
-              El comprobante oficial se encuentra adjunto a este correo en formato PDF. Por seguridad y privacidad, la firma digital ha sido destruida del sistema tras la generación de este documento.
+              El comprobante oficial se encuentra adjunto a este correo en formato PDF. Por motivos de seguridad y privacidad, la firma digital ha sido procesada de forma segura y eliminada de nuestros registros temporales tras la generación de este documento.
             </Text>
+
+            <Section style={{ textAlign: 'center', marginTop: '32px', marginBottom: '32px' }}>
+              <Button style={button} href="https://papelerianotarial.net">
+                Visitar Nuestro Sitio
+              </Button>
+            </Section>
 
             <Hr style={hr} />
             
             <Text style={footer}>
-              Este es un correo automático de control de suministros. 
-              <br />
-              © 2025 A&amp;G | NEXTCODE
+              Si tiene alguna duda o aclaración, no dude en contactarnos a través de <Link style={link} href="mailto:soporte@papelerianotarial.net">soporte@papelerianotarial.net</Link>.
+            </Text>
+            <Text style={footer}>
+              Este es un mensaje automático transaccional. Por favor, no responda directamente a esta dirección.
+              <br /><br />
+              © {new Date().getFullYear()} Papelería Notarial | papelerianotarial.net
             </Text>
           </Section>
         </Container>
@@ -60,8 +73,8 @@ export const DeliveryEmail = ({ date }: DeliveryEmailProps) => {
 export default DeliveryEmail;
 
 const main = {
-  backgroundColor: '#050505',
-  fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
+  backgroundColor: '#0a0a0a',
+  fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif',
 };
 
 const container = {
@@ -71,77 +84,92 @@ const container = {
 };
 
 const header = {
-  borderLeft: '4px solid #0066FF',
+  borderLeft: '4px solid #D4AF37',
   paddingLeft: '20px',
   marginBottom: '40px',
 };
 
 const h1 = {
   color: '#ffffff',
-  fontSize: '24px',
-  fontWeight: '900',
-  textTransform: 'uppercase' as const,
+  fontSize: '28px',
+  fontWeight: '600',
+  letterSpacing: '-0.5px',
   margin: '0',
-  letterSpacing: '-1px',
 };
 
 const edition = {
-  color: '#0066FF',
-  fontSize: '10px',
-  fontWeight: 'bold',
+  color: '#D4AF37',
+  fontSize: '11px',
+  fontWeight: '600',
   textTransform: 'uppercase' as const,
   letterSpacing: '2px',
-  margin: '4px 0 0 0',
+  margin: '8px 0 0 0',
 };
 
 const content = {
-  backgroundColor: '#111111',
+  backgroundColor: '#141414',
   padding: '40px',
-  borderRadius: '4px',
-  border: '1px solid #222',
+  borderRadius: '8px',
+  border: '1px solid #262626',
 };
 
 const paragraph = {
-  color: '#888',
-  fontSize: '14px',
+  color: '#a3a3a3',
+  fontSize: '15px',
   lineHeight: '24px',
-  marginBottom: '24px',
+  marginBottom: '20px',
 };
 
 const detailsBox = {
   backgroundColor: '#0a0a0a',
-  padding: '20px',
-  borderRadius: '2px',
-  border: '1px solid #1a1a1a',
+  padding: '24px',
+  borderRadius: '6px',
+  border: '1px solid #262626',
   marginBottom: '24px',
+  textAlign: 'center' as const,
 };
 
 const detailLabel = {
-  color: '#444',
-  fontSize: '10px',
-  fontWeight: 'bold',
+  color: '#737373',
+  fontSize: '11px',
+  fontWeight: '600',
   textTransform: 'uppercase' as const,
-  letterSpacing: '1px',
-  margin: '0 0 4px 0',
+  letterSpacing: '1.5px',
+  margin: '0 0 8px 0',
 };
 
 const detailValue = {
   color: '#ffffff',
-  fontSize: '16px',
-  fontWeight: 'bold',
+  fontSize: '18px',
+  fontWeight: '600',
   margin: '0',
 };
 
+const button = {
+  backgroundColor: '#ffffff',
+  color: '#000000',
+  fontSize: '14px',
+  fontWeight: '600',
+  textDecoration: 'none',
+  textAlign: 'center' as const,
+  padding: '12px 24px',
+  borderRadius: '4px',
+};
+
 const hr = {
-  borderColor: '#222',
-  margin: '40px 0',
+  borderColor: '#262626',
+  margin: '32px 0',
 };
 
 const footer = {
-  color: '#444',
-  fontSize: '10px',
+  color: '#737373',
+  fontSize: '12px',
   textAlign: 'center' as const,
-  textTransform: 'uppercase' as const,
-  letterSpacing: '1px',
-  lineHeight: '18px',
+  lineHeight: '20px',
+  marginBottom: '10px',
+};
+
+const link = {
+  color: '#D4AF37',
+  textDecoration: 'underline',
 };

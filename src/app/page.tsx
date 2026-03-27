@@ -8,16 +8,46 @@ import SuccessView from '@/components/delivery/SuccessView';
 import DeliveryPDFPreview from '@/components/delivery/DeliveryPDFPreview';
 import EmailEntry from '@/components/delivery/EmailEntry';
 
+import { AnimatePresence, motion } from 'framer-motion';
+
 function DeliveryFlow() {
   const { step } = useDelivery();
 
+  const variants = {
+    initial: { opacity: 0, x: 20 },
+    animate: { opacity: 1, x: 0, transition: { duration: 0.4, ease: "easeOut" as const } },
+    exit: { opacity: 0, x: -20, transition: { duration: 0.3, ease: "easeIn" as const } },
+  };
+
   return (
-    <div className="w-full max-w-2xl mx-auto py-12 px-4 min-h-screen flex items-center justify-center">
-      {step === 1 && <ProductForm />}
-      {step === 2 && <DeliveryPDFPreview />}
-      {step === 3 && <EmailEntry />}
-      {step === 4 && <SignaturePad />}
-      {step === 5 && <SuccessView />}
+    <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 md:px-8 relative min-h-[600px] pb-12">
+      <AnimatePresence mode="wait">
+        {step === 1 && (
+          <motion.div key="step1" variants={variants} initial="initial" animate="animate" exit="exit">
+            <ProductForm />
+          </motion.div>
+        )}
+        {step === 2 && (
+          <motion.div key="step2" variants={variants} initial="initial" animate="animate" exit="exit">
+            <DeliveryPDFPreview />
+          </motion.div>
+        )}
+        {step === 3 && (
+          <motion.div key="step3" variants={variants} initial="initial" animate="animate" exit="exit">
+            <EmailEntry />
+          </motion.div>
+        )}
+        {step === 4 && (
+          <motion.div key="step4" variants={variants} initial="initial" animate="animate" exit="exit">
+            <SignaturePad />
+          </motion.div>
+        )}
+        {step === 5 && (
+          <motion.div key="step5" variants={variants} initial="initial" animate="animate" exit="exit">
+            <SuccessView />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

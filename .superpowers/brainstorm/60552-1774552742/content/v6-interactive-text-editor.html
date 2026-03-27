@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Textos - A&G</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0F172A;
+            --gold: #B45309;
+            --bg: #F8FAFC;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--navy);
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: var(--navy);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .editor-card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 25px;
+            border-bottom: 1px solid #F1F5F9;
+            padding-bottom: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .label-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .id-badge {
+            font-size: 10px;
+            font-weight: 900;
+            background: #F1F5F9;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #64748B;
+        }
+
+        .field-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #475569;
+        }
+
+        textarea, input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #E2E8F0;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus, input:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: #FFFAF0;
+        }
+
+        .btn-copy {
+            background: var(--navy);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+
+        .btn-copy:hover {
+            background: #1E293B;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #64748B;
+            margin-top: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1 style="margin:0; font-size: 18px; font-weight: 900; text-transform: uppercase;">Editor de Textos Brandeado</h1>
+        <div style="font-size: 12px; font-weight: 600; color: #94A3B8;">A&G Notarial Edition</div>
+    </div>
+
+    <div class="container">
+        <div class="editor-card">
+            <div class="section-title">Paso 1: Captura</div>
+            <div class="input-group">
+                <div class="label-row">
+                    <span class="field-label">Título Principal</span>
+                    <span class="id-badge">P1-T1</span>
+                </div>
+                <input type="text" value="Cotejo de Suministro" id="P1-T1">
+            </div>
+            <div class="input-group">
+                <div class="label-row">
+                    <span class="field-label">Subtítulo</span>
+                    <span class="id-badge">P1-T2</span>
+                </div>
+                <textarea id="P1-T2">Por favor verifique que todos los datos son correctos</textarea>
+            </div>
+            <div class="input-group">
+                <div class="label-row">
+                    <span class="field-label">Etiqueta Input</span>
+                    <span class="id-badge">P1-L1</span>
+                </div>
+                <input type="text" value="Producto" id="P1-L1">
+            </div>
+        </div>
+
+        <div class="editor-card">
+            <div class="section-title">Paso 2: Cotejo (Preview)</div>
+            <div class="input-group">
+                <div class="label-row">
+                    <span class="field-label">Título</span>
+                    <span class="id-badge">P2-T1</span>
+                </div>
+                <input type="text" value="Cotejo de Material" id="P2-T1">
+            </div>
+            <div class="input-group">
+                <div class="label-row">
+                    <span class="field-label">Subtítulo</span>
+                    <span class="id-badge">P2-T2</span>
+                </div>
+                <input type="text" value="Revision de material entregado" id="P2-T2">
+            </div>
+        </div>
+
+        <div class="editor-card">
+            <div class="section-title">Paso 5: Éxito</div>
+            <div class="input-group">
+                <div class="label-row">
+                    <span class="field-label">Título Éxito</span>
+                    <span class="id-badge">P5-T1</span>
+                </div>
+                <input type="text" value="Entrega Confirmada" id="P5-T1">
+            </div>
+            <div class="input-group">
+                <div class="label-row">
+                    <span class="field-label">Mensaje Final</span>
+                    <span class="id-badge">P5-T2</span>
+                </div>
+                <textarea id="P5-T2">Nos alegra que su producto sea lo que esperaba</textarea>
+            </div>
+        </div>
+
+        <div class="editor-card">
+            <div class="section-title">Email</div>
+            <div class="input-group">
+                <div class="label-row">
+                    <span class="field-label">Asunto</span>
+                    <span class="id-badge">E1-SUB</span>
+                </div>
+                <input type="text" value="Comprobante de Entrega" id="E1-SUB">
+            </div>
+            <div class="input-group">
+                <div class="label-row">
+                    <span class="field-label">Cuerpo Email</span>
+                    <span class="id-badge">E1-T1</span>
+                </div>
+                <textarea id="E1-T1" rows="4">Agradecemos sinceramente su preferencia en la compra de nuestro material. Esperamos que los productos entregados cumplan con sus expectativas y que esta sea solo una de muchas colaboraciones exitosas en el futuro.</textarea>
+            </div>
+        </div>
+
+        <button class="btn-copy" onclick="copyAll()">¡Listo! He terminado de editar</button>
+        <p class="hint">Escribe los nuevos textos arriba y cuando termines me avisas por aquí.</p>
+    </div>
+
+    <script>
+        function copyAll() {
+            const ids = ['P1-T1', 'P1-T2', 'P1-L1', 'P2-T1', 'P2-T2', 'P5-T1', 'P5-T2', 'E1-SUB', 'E1-T1'];
+            let result = "Danny, aquí están los nuevos textos:\n\n";
+            ids.forEach(id => {
+                result += `${id}: ${document.getElementById(id).value}\n`;
+            });
+            console.log(result);
+            alert("¡Perfecto! Regresa a la terminal y pégame los textos que editaste para que yo los aplique al código.");
+        }
+    </script>
+
+</body>
+</html>

@@ -51,9 +51,9 @@ export async function submitDelivery(data: DeliveryData) {
 
     // 3. Enviar Email con Resend desde notificaciones@sivd.app
     const { data: resendData, error: resendError } = await resend.emails.send({
-      from: 'notificaciones@sivd.app',
+      from: 'Papelería Notarial <notificaciones@sivd.app>',
       to: data.emails,
-      subject: 'Comprobante de Entrega',
+      subject: 'Papelería Notarial - Su Comprobante de Entrega',
       react: React.createElement(DeliveryEmail, { date }),
       attachments: [
         {

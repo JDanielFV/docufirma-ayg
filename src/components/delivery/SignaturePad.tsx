@@ -5,6 +5,9 @@ import SignatureCanvas from 'react-signature-canvas';
 import { useDelivery } from '@/hooks/useDeliveryStore';
 import { submitDelivery } from '@/app/actions/submit-delivery';
 import { Eraser, Send, ArrowLeft, Loader2 } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
 
 export default function SignaturePad() {
   const { products, emails, nextStep, prevStep } = useDelivery();
@@ -41,71 +44,74 @@ export default function SignaturePad() {
   };
 
   return (
-    <div className="glass-card">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2.5rem' }}>
-        <div>
-          <h1 className="title-premium">Firma Digital</h1>
-          <p className="subtitle-premium" style={{ marginBottom: 0 }}>
-            Validación de autenticidad y aceptación.
+    <Card className="w-full max-w-2xl mx-auto shadow-lg border-slate-200">
+      <CardHeader className="space-y-1">
+        <CardTitle className="text-3xl font-bold tracking-tight text-slate-900">
+          Firma Digital
+        </CardTitle>
+        <CardDescription className="text-slate-500">
+          Validación de autenticidad y aceptación.
+        </CardDescription>
+      </CardHeader>
+      
+      <CardContent className="space-y-6">
+        <div className="space-y-3">
+          <Label className="text-slate-700 font-semibold">Área de Firma Técnica</Label>
+          <div className="relative border-2 border-dashed border-slate-300 rounded-lg bg-slate-50 overflow-hidden">
+            <SignatureCanvas
+              ref={sigCanvas}
+              penColor="#0f172a"
+              canvasProps={{
+                className: 'w-full h-64 cursor-crosshair touch-none',
+              }}
+            />
+            <Button
+              type="button"
+              variant="secondary"
+              size="icon"
+              onClick={clear}
+              className="absolute top-2 right-2 h-8 w-8 bg-white/80 hover:bg-white shadow-sm border border-slate-200 text-slate-600"
+              title="Limpiar firma"
+            >
+              <Eraser size={16} />
+            </Button>
+          </div>
+          <p className="text-xs text-center text-slate-500 mt-2">
+            La firma será incrustada en el PDF y destruida tras el envío.
           </p>
         </div>
-      </div>
+      </CardContent>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <label className="form-label" style={{ color: 'var(--bugatti-blue)' }}>
-          Área de Firma Técnica
-        </label>
-        <div style={{ position: 'relative', background: '#000', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '2px', overflow: 'hidden' }}>
-          <SignatureCanvas
-            ref={sigCanvas}
-            penColor="#0066FF"
-            canvasProps={{
-              style: { width: '100%', height: '250px', cursor: 'crosshair', touchAction: 'none' }
-            }}
-          />
-          <button
-            onClick={clear}
-            style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'rgba(255,255,255,0.05)', color: '#666', border: 'none', padding: '0.5rem', borderRadius: '2px', cursor: 'pointer' }}
-          >
-            <Eraser size={18} />
-          </button>
-        </div>
-        <p style={{ fontSize: '0.6rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.15em', textAlign: 'center', marginTop: '1rem' }}>
-          La firma será incrustada en el PDF y destruida tras el envío.
-        </p>
-      </div>
-
-      <div className="flex-responsive" style={{ paddingTop: '2.5rem' }}>
-        <button
+      <CardFooter className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-slate-100">
+        <Button
+          type="button"
           onClick={prevStep}
           disabled={isSubmitting}
-          className="btn-bugatti-outline"
-          style={{ width: '100%', padding: '1.25rem', opacity: isSubmitting ? 0.3 : 1, display: 'flex', justifyContent: 'center' }}
+          variant="outline"
+          className="w-full sm:w-auto h-12 border-slate-300 text-slate-700 hover:bg-slate-50"
         >
-          <ArrowLeft size={20} />
-        </button>
-        <button
+          <ArrowLeft size={18} className="mr-2" />
+          Atrás
+        </Button>
+        <Button
+          type="button"
           onClick={handleSubmit}
           disabled={isSubmitting}
-          className="btn-bugatti-primary"
-          style={{ opacity: isSubmitting ? 0.5 : 1 }}
+          className="w-full sm:flex-1 h-12 bg-slate-900 hover:bg-slate-800 text-white font-semibold transition-all"
         >
           {isSubmitting ? (
             <>
-              <Loader2 size={18} style={{ animation: 'spin 1s linear infinite' }} />
-              Procesando Ingeniería...
+              <Loader2 size={18} className="mr-2 animate-spin" />
+              Procesando...
             </>
           ) : (
             <>
-              <Send size={18} />
+              <Send size={18} className="mr-2" />
               Finalizar y Enviar
             </>
           )}
-        </button>
-      </div>
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-      `}} />
-    </div>
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }

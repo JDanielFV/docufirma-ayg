@@ -3,6 +3,8 @@
 import React from 'react';
 import { useDelivery } from '@/hooks/useDeliveryStore';
 import { FileText, Check, ArrowLeft } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 export default function DeliveryPDFPreview() {
   const { products, nextStep, prevStep } = useDelivery();
@@ -12,67 +14,74 @@ export default function DeliveryPDFPreview() {
   } as any);
 
   return (
-    <div className="glass-card">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2.5rem' }}>
-        <div>
-          <h1 className="title-premium">Cotejo de Material</h1>
-          <p className="subtitle-premium" style={{ marginBottom: 0 }}>
-            Revision de material entregado
-          </p>
-        </div>
-        <div style={{ background: 'rgba(255,255,255,0.05)', padding: '0.75rem', borderRadius: '50%' }}>
-          <FileText style={{ color: 'var(--bugatti-blue)' }} size={24} />
-        </div>
-      </div>
-
-      <div style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '2px', padding: '1.5rem', marginBottom: '2.5rem', overflowX: 'auto' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'var(--text-muted)', fontWeight: 800, borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '1rem', marginBottom: '1.5rem', minWidth: 'max-content', gap: '1rem' }}>
-          <span>Documento: DRAFT-EST-2025</span>
-          <span>Fecha: {date}</span>
-        </div>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', minWidth: 'min-content' }}>
-          <label className="form-label" style={{ color: 'var(--bugatti-blue)' }}>
-            Lista de Componentes
-          </label>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            {products.map((product) => (
-              <div key={product.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderBottom: '1px dashed rgba(255,255,255,0.1)', paddingBottom: '0.5rem', gap: '1rem' }}>
-                <div style={{ fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', color: '#eee' }}>
-                  {product.name}
-                  <div style={{ fontSize: '0.55rem', color: 'var(--text-muted)', fontFamily: 'monospace', letterSpacing: 0, textTransform: 'lowercase', marginTop: '0.2rem' }}>uid: {product.id}</div>
-                </div>
-                <div style={{ color: 'var(--bugatti-blue)', fontWeight: 900, fontFamily: 'monospace', whiteSpace: 'nowrap' }}>
-                  QTY: {product.quantity.toString().padStart(2, '0')}
-                </div>
-              </div>
-            ))}
+    <Card className="w-full max-w-2xl mx-auto shadow-lg border-slate-200">
+      <CardHeader className="space-y-1">
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-3xl font-bold tracking-tight text-slate-900">
+              Papelería Notarial
+            </CardTitle>
+            <CardDescription className="text-slate-500 mt-1">
+              Comprobante Oficial de Entrega
+            </CardDescription>
+          </div>
+          <div className="p-3 bg-[#D4AF37]/10 rounded-full">
+            <FileText className="text-[#D4AF37]" size={28} />
           </div>
         </div>
+      </CardHeader>
+      
+      <CardContent className="space-y-6">
+        <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+          <div className="flex justify-between items-center border-b border-slate-100 pb-4 mb-4">
+            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">REF: DOC-AYG-2026</span>
+            <span className="text-xs font-medium text-slate-400">{date}</span>
+          </div>
 
-        <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-          <p style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', fontStyle: 'italic', lineHeight: 1.5 }}>
-            * Este documento es un borrador digital. Al confirmar, usted acepta que los productos listados coinciden con la entrega física.
-          </p>
+          <div className="space-y-4">
+            <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wide border-l-4 border-[#D4AF37] pl-3">
+              Lista de Componentes
+            </h4>
+            <div className="space-y-3">
+              {products.map((product) => (
+                <div key={product.id} className="flex justify-between items-end border-b border-dashed border-slate-100 pb-3">
+                  <div>
+                    <p className="font-semibold text-slate-800">{product.name}</p>
+                    <p className="text-[10px] text-slate-400 font-mono mt-0.5">UID: {product.id}</p>
+                  </div>
+                  <div className="font-bold text-[#D4AF37] tabular-nums bg-[#D4AF37]/5 px-2 py-1 rounded border border-[#D4AF37]/20">
+                    QTY: {product.quantity.toString().padStart(2, '0')}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 pt-4 border-t border-slate-100">
+            <p className="text-[10px] text-slate-400 italic leading-relaxed">
+              * Este documento es un comprobante borrador digital. Al continuar al paso de firma, usted acepta que los productos listados coinciden de conformidad con la entrega física.
+            </p>
+          </div>
         </div>
-      </div>
+      </CardContent>
 
-      <div className="flex-responsive">
-        <button
+      <CardFooter className="flex flex-col sm:flex-row gap-3 pt-4">
+        <Button
           onClick={prevStep}
-          className="btn-bugatti-outline"
-          style={{ width: '100%', padding: '1.25rem', display: 'flex', justifyContent: 'center' }}
+          variant="outline"
+          className="w-full sm:w-auto h-12 border-slate-300 text-slate-600 hover:bg-slate-50"
         >
-          <ArrowLeft size={20} />
-        </button>
-        <button
+          <ArrowLeft size={18} className="mr-2" />
+          Atrás
+        </Button>
+        <Button
           onClick={nextStep}
-          className="btn-bugatti-primary"
+          className="w-full sm:flex-1 h-12 bg-[#0a0a0a] hover:bg-[#1a1a1a] text-white font-semibold border border-[#D4AF37] shadow-md shadow-[#D4AF37]/10"
         >
-          <Check size={18} />
-          Confirmar Cotejo
-        </button>
-      </div>
-    </div>
+          <Check size={18} className="mr-2 text-[#D4AF37]" />
+          Confirmar y Firmar
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }

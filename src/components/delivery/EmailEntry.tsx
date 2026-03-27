@@ -3,6 +3,10 @@
 import React, { useState } from 'react';
 import { useDelivery } from '@/hooks/useDeliveryStore';
 import { Mail, Plus, X, ArrowLeft, Send } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 export default function EmailEntry() {
   const { emails, setEmails, nextStep, prevStep } = useDelivery();
@@ -25,88 +29,99 @@ export default function EmailEntry() {
   const filteredEmails = emails.filter(e => e !== '');
 
   return (
-    <div className="glass-card">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2.5rem' }}>
-        <div>
-          <h1 className="title-premium">Destinatarios</h1>
-          <p className="subtitle-premium" style={{ marginBottom: 0 }}>
-            Configuración de destinatarios
-          </p>
-        </div>
-        <div style={{ background: 'rgba(255,255,255,0.05)', padding: '0.75rem', borderRadius: '50%' }}>
-          <Mail style={{ color: 'var(--bugatti-blue)' }} size={24} />
-        </div>
-      </div>
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-        <label className="form-label">Añadir Correo Electrónico</label>
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
-          <input
-            type="email"
-            value={newEmail}
-            onChange={(e) => setNewEmail(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                e.preventDefault();
-                handleAddEmail(e as any);
-              }
-            }}
-            placeholder="ejemplo@dominio.com"
-            className="form-input"
-          />
-          <button
-            type="button"
-            onClick={handleAddEmail}
-            className="btn-bugatti-outline"
-            style={{ width: 'auto', padding: '0 1.5rem', touchAction: 'manipulation' }}
-          >
-            <Plus size={20} />
-          </button>
-        </div>
-      </div>
-
-      <div style={{ marginTop: '2rem', minHeight: '120px', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-        {filteredEmails.length === 0 ? (
-          <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px dashed rgba(255,255,255,0.05)', borderRadius: '2px', padding: '2rem' }}>
-            <p style={{ fontSize: '0.65rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.15em' }}>No hay correos registrados</p>
+    <Card className="w-full max-w-2xl mx-auto shadow-lg border-slate-200">
+      <CardHeader className="space-y-1">
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-3xl font-bold tracking-tight text-slate-900">
+              Destinatarios
+            </CardTitle>
+            <CardDescription className="text-slate-500 mt-1">
+              Configuración de destinatarios
+            </CardDescription>
           </div>
-        ) : (
-          filteredEmails.map((email) => (
-            <div
-              key={email}
-              className="animate-up"
-              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '2px', wordBreak: 'break-all' }}
+          <div className="p-3 bg-blue-50 rounded-full">
+            <Mail className="text-blue-600" size={28} />
+          </div>
+        </div>
+      </CardHeader>
+      
+      <CardContent className="space-y-6">
+        <div className="space-y-2">
+          <Label htmlFor="email-input" className="text-slate-700 font-semibold">Añadir Correo Electrónico</Label>
+          <div className="flex gap-3">
+            <Input
+              id="email-input"
+              type="email"
+              value={newEmail}
+              onChange={(e) => setNewEmail(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  handleAddEmail(e as any);
+                }
+              }}
+              placeholder="ejemplo@dominio.com"
+              className="flex-1 border-slate-300 focus-visible:ring-slate-400"
+            />
+            <Button
+              type="button"
+              onClick={handleAddEmail}
+              variant="outline"
+              className="h-10 px-4 border-slate-300 hover:bg-slate-100 text-slate-700"
             >
-              <span style={{ fontSize: '0.85rem', color: '#ccc', marginRight: '10px' }}>{email}</span>
-              <button
-                onClick={() => removeEmail(email)}
-                style={{ color: 'var(--text-muted)', background: 'none' }}
-              >
-                <X size={16} />
-              </button>
-            </div>
-          ))
-        )}
-      </div>
+              <Plus size={20} />
+            </Button>
+          </div>
+        </div>
 
-      <div className="flex-responsive" style={{ paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.05)', marginTop: '2.5rem' }}>
-        <button
+        <div className="mt-8">
+          <h4 className="text-sm font-semibold text-slate-700 mb-3">Correos Registrados</h4>
+          <div className="space-y-2 min-h-[120px]">
+            {filteredEmails.length === 0 ? (
+              <div className="h-full flex items-center justify-center border border-dashed border-slate-300 rounded-lg p-8 bg-slate-50">
+                <p className="text-sm text-slate-400 font-medium">No hay correos registrados</p>
+              </div>
+            ) : (
+              filteredEmails.map((email) => (
+                <div
+                  key={email}
+                  className="flex justify-between items-center p-3 bg-white border border-slate-200 shadow-sm rounded-md"
+                >
+                  <span className="text-sm font-medium text-slate-700 truncate mr-4">{email}</span>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => removeEmail(email)}
+                    className="text-slate-400 hover:text-red-600 hover:bg-red-50 h-8 w-8 flex-shrink-0"
+                  >
+                    <X size={16} />
+                  </Button>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </CardContent>
+
+      <CardFooter className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-slate-100">
+        <Button
           onClick={prevStep}
-          className="btn-bugatti-outline"
-          style={{ width: '100%', padding: '1.25rem', display: 'flex', justifyContent: 'center' }}
+          variant="outline"
+          className="w-full sm:w-auto h-12 border-slate-300 text-slate-700 hover:bg-slate-50"
         >
-          <ArrowLeft size={20} />
-        </button>
-        <button
+          <ArrowLeft size={18} className="mr-2" />
+          Atrás
+        </Button>
+        <Button
           onClick={nextStep}
           disabled={filteredEmails.length === 0}
-          className="btn-bugatti-primary"
-          style={{ opacity: filteredEmails.length === 0 ? 0.3 : 1 }}
+          className="w-full sm:flex-1 h-12 bg-slate-900 hover:bg-slate-800 text-white font-semibold transition-all"
         >
-          <Send size={18} />
+          <Send size={18} className="mr-2" />
           Preparar Documento Final
-        </button>
-      </div>
-    </div>
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }
