@@ -25,8 +25,8 @@ export default function DeliveryPDFPreview() {
               Comprobante Oficial de Entrega
             </CardDescription>
           </div>
-          <div className="p-3 bg-[#D4AF37]/10 rounded-full">
-            <FileText className="text-[#D4AF37]" size={28} />
+          <div className="p-1 bg-white rounded-full border border-slate-100 flex items-center justify-center h-14 w-14 overflow-hidden shadow-sm">
+            <img src="/logo.svg" alt="Logo Papelería Notarial" className="w-full h-full object-contain" />
           </div>
         </div>
       </CardHeader>

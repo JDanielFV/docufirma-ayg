@@ -22,12 +22,22 @@ export async function submitDelivery(data: DeliveryData) {
       timeStyle: 'short'
     });
     
+    // Resolve absolute URL for react-pdf image fetching
+    const baseUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL 
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` 
+      : process.env.VERCEL_URL 
+        ? `https://${process.env.VERCEL_URL}` 
+        : 'http://localhost:3000';
+    const logoUrl = `${baseUrl}/logo-black.svg`;
+
+    
     // 1. Generar Buffer del PDF con la firma incrustada
     const pdfBuffer = await renderToBuffer(
       React.createElement(DeliveryPDF, { 
         products: data.products, 
         date, 
-        signature: data.signature 
+        signature: data.signature,
+        logoUrl
       }) as any
     );
 

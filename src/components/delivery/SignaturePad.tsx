@@ -27,20 +27,26 @@ export default function SignaturePad() {
     setIsSubmitting(true);
     const signatureBase64 = sigCanvas.current?.getTrimmedCanvas().toDataURL('image/png');
 
-    if (signatureBase64) {
-      const result = await submitDelivery({
-        products,
-        emails,
-        signature: signatureBase64,
-      });
+    try {
+      if (signatureBase64) {
+        const result = await submitDelivery({
+          products,
+          emails,
+          signature: signatureBase64,
+        });
 
-      if (result.success) {
-        nextStep();
-      } else {
-        alert(result.error || 'Error al procesar la entrega');
+        if (result.success) {
+          nextStep();
+        } else {
+          alert(result.error || 'Error al procesar la entrega');
+        }
       }
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('Error de conexión al servidor (Vercel Timeout o Network Error). Por favor revise la consola.');
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   return (

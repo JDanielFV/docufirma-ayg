@@ -8,15 +8,39 @@ const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
     backgroundColor: '#ffffff',
   },
+  watermarkContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: -1,
+  },
+  watermarkImage: {
+    width: 450,
+    opacity: 0.04,
+  },
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     borderBottom: '2px solid #D4AF37',
     paddingBottom: 20,
     marginBottom: 30,
   },
   headerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  logo: {
+    width: 50,
+    height: 50,
+    marginRight: 15,
+    objectFit: 'contain',
+  },
+  titleGroup: {
     flexDirection: 'column',
   },
   mainTitle: {
@@ -122,16 +146,26 @@ interface DeliveryPDFProps {
   products: Product[];
   date: string;
   signature: string;
+  logoUrl?: string;
 }
 
-export const DeliveryPDF = ({ products, date, signature }: DeliveryPDFProps) => (
+export const DeliveryPDF = ({ products, date, signature, logoUrl }: DeliveryPDFProps) => (
   <Document>
     <Page size="A4" style={styles.page}>
       
+      {logoUrl && (
+        <View style={styles.watermarkContainer}>
+          <Image src={logoUrl} style={styles.watermarkImage} />
+        </View>
+      )}
+
       <View style={styles.headerContainer}>
         <View style={styles.headerLeft}>
-          <Text style={styles.mainTitle}>Papelería Notarial</Text>
-          <Text style={styles.subTitle}>Comprobante Oficial de Entrega</Text>
+          {logoUrl ? <Image src={logoUrl} style={styles.logo} /> : null}
+          <View style={styles.titleGroup}>
+            <Text style={styles.mainTitle}>Papelería Notarial</Text>
+            <Text style={styles.subTitle}>Comprobante Oficial de Entrega</Text>
+          </View>
         </View>
         <View style={styles.headerRight}>
           <Text style={styles.dateInfo}>{date}</Text>

@@ -1,4 +1,5 @@
 import { FileSignature } from 'lucide-react';
+import Image from 'next/image';
 
 interface ShellProps {
   children: React.ReactNode;
@@ -10,8 +11,8 @@ export default function Shell({ children }: ShellProps) {
       <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#0a0a0a]/90 backdrop-blur-xl text-white shadow-sm shadow-[#D4AF37]/5">
         <div className="container mx-auto max-w-5xl px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="bg-[#D4AF37]/10 p-1.5 rounded-md border border-[#D4AF37]/20">
-              <FileSignature className="h-5 w-5 text-[#D4AF37]" />
+            <div className="bg-white/10 rounded-md border border-[#D4AF37]/20 flex items-center justify-center p-1 overflow-hidden h-10 w-10">
+              <Image src="/logo.svg" alt="Papelería Notarial Logo" width={32} height={32} className="object-contain" />
             </div>
             <div>
               <h1 className="text-base font-bold tracking-tight text-white leading-none">
